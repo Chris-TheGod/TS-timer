@@ -41,7 +41,32 @@ type Action = {
   type: 'ADD_TIMER' | 'START_TIMERS' | 'STOP_TIMERS';
 };
 
-const timersReducer = (state: TimersState, action: Action): TimersState => {};
+const timersReducer = (state: TimersState, action: Action): TimersState => {
+  if (action.type === 'START_TIMERS') {
+    return {
+      ...state,
+      isRunning: true,
+    };
+  }
+  if (action.type === 'STOP_TIMERS') {
+    return {
+      ...state,
+      isRunning: false,
+    };
+  }
+  if (action.type === 'ADD_TIMER') {
+    return {
+      ...state,
+      timers: [
+        ...state.timers,
+        {
+          name,
+          duration,
+        },
+      ],
+    };
+  }
+};
 
 export const TimersContextProvider = ({
   children,
